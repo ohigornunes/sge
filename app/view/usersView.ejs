@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>SGE - Configurações de Usuários e Adminstradores</title>
+    <style>
+        body { background: #7386D5; }
+    </style>
+    <!-- <script>
+        $('#getDetail').on('click', function () {
+            $.ajax({
+                url: '/detalhes',
+                method: "get",
+                success: function (data) {
+                    $('#resultDetail').html(data);
+                }
+            });
+        })
+    </script> -->
+</head>
+<body>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div>
+                    <h2 class="navbar-text navbar-left">Configurações de Usuários e Adminstradores</h2>
+                </div>
+                <div>
+                    <a class="navbar-text navbar-right" href="/home">
+                        <button class="float-right btn btn-lg btn-default" type="submit" id="btnAdd">
+                            <span>Voltar para página inicial >>> </span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <section>
+        <% if ( user_current.user_type !== 'master' ) { %>
+            <a href="/home">
+                <!-- <span class="glyphicon glyphicon-remove"></span> -->
+                <button c req.session.user_type =lass="btn btn-danger">
+                    <h1>Você não é Adminstrador Master  do Sistema!</h1>
+                </button>
+            </a>
+        <% } %>     
+        <% if ( user_all.length > 0 && user_current.user_type === 'master' ) { %>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Remover</th>
+                        <th>Admin/User</th>
+                    </tr>
+                </thead>
+            <tbody id="tabela">
+                <tfoot>
+                        <% for(var i = 0; i < user_all.length; i++ ) { %>
+                            <% if ( user_all[i].user_type !== 'master' ) { %>
+                                    <td>
+                                        <h4><%= user_all[i].user_type %></h4>
+                                    </td>
+                                    <td>
+                                        <h4><%= user_all[i].first_name %></h4>
+                                    </td>
+                                    <td>
+                                        <h4><%= user_all[i].email %></h4>
+                                    </td>
+                                    <td>
+                                        <a href="/delete-user?user_id=<%= user_all[i]._id %>">
+                                            <button class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-remove"> Remover</span>
+                                            </button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <% if ( user_all[i].user_type === 'admin' && user_all[i].user_type !== 'master' ) { %>
+                                            <a href="/turn-user?user_id=<%= user_all[i]._id %>">
+                                                <button class="btn btn-warning">
+                                                    <span class="glyphicon glyphicon-user"> Usuário</span>
+                                                </button>
+                                            </a>
+                                        <% } else if( user_all[i].user_type !== 'master' ) { %>
+                                            <a href="/turn-admin?user_id=<%= user_all[i]._id %>">
+                                                <button class="btn btn-warning">
+                                                    <span class="glyphicon glyphicon-user"> Adminstrador</span>
+                                                </button>
+                                            </a>
+                                        <% } %>
+                                    </td>                                    
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                </tfoot>
+            </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

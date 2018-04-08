@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Envie um email para os seus alunos</title>
+    
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: #7386D5 }
+    #central { justify-content: center; }
+
+  </style>
+</head>
+<body>
+  <div id="central" class="container">
+    <div>
+        <form class="form-signin" action="/send-email" method="post">
+          <h4 style="margin-bottom: 25px; text-align: center;">Envie um email os usuários inscritos neste evento.</h4>
+          <!--<div class="form-group">-->
+            <!--<input type="text" class="form-control" id="name" name="name" placeholder="Name" >-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<input type="text" class="form-control" id="email" name="email" placeholder="Email" >-->
+          <!--</div>-->
+          <div class="form-group">
+            <input class="form-control" type="text" name="subject" placeholder="Título da Mensagem" >
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" type="textarea" name="message" placeholder="Digite a sua mensagem" rows="7"></textarea>
+          </div>
+          <button type="submit" class="btn btn-sm btn-success pull-right">
+              <i class="glyphicon glyphicon-envelope"></i>
+              Enviar Mensagem
+          </button>
+        </form>
+        <div class="float-left">
+          <button type="button" class="btn btn-sm btn-danger">
+            <a href="/home">
+              <i class="glyphicon glyphicon-remove"> </i>
+               Cancelar Envio
+            </a>
+          </button>
+        </div>
+    </div>
+    </div>
+    <% if (event.users_email_enrolled.length != null && event.users_email_enrolled.length > 0 ) { %>
+      <div class="container">
+        <div>
+          </br>
+            <h4 style="margin-bottom: 25px; text-align: center;">Usuário inscrito neste evento.</h4><hr>
+              <% for( var i = 0; i < event.users_email_enrolled.length; i++ ) { %>
+                <h5>Nome: <%= event.users_name_enrolled[i] %> | Email:<%= event.users_email_enrolled[i] %></h5><hr>
+              <% } %>
+        </div>
+      </div>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="images/favicon.ico">
+
+  <title>SGE - Descrição do Eventos</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body { background: #7386D5; }
+    .sge { color: white; font-size: 3em;  margin-bottom: 5%; text-align: center; }
+  </style>
+
+</head>
+  <body>
+    <div class="container">
+      <h3 class="sge"> SGE - Descrição do Eventos</h3>
+      <!-- <img class="mb-4 rounded mx-auto d-block" src="images/logo-sge.png" width="150" height="100"> -->
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Nome do Evento:  </strong><%= event.event_name %></li>
+        <li class="list-group-item"><strong>Nome do Responsável:  </strong><%= event.sponsor_name %></li>
+        <li class="list-group-item"><strong>Data Inicial:  </strong><%= event.date_initial.toLocaleDateString('pt-BR') %></li>
+        <li class="list-group-item"><strong>Data Final:  </strong><%=event.date_final.toLocaleDateString('pt-BR') %></li>
+        <li class="list-group-item"><strong>Hora de Início:  </strong><%= event.hour_initial %></li>
+        <li class="list-group-item"><strong>Hora de Término:  </strong><%= event.event_name %></li>
+        <li class="list-group-item"><strong>Quantidade de Vagas:  </strong><%= event.qtd_total %></li>
+        <li class="list-group-item"><strong>Quantidade de Restante:  </strong><%= event.qtd_remained %></li>
+        <li class="list-group-item"><strong>Tipo de Eventos:  </strong><%= event.event_type %></li>
+        <li class="list-group-item"><strong>Tipo de Acquisição:  </strong><%= event.event_acquisition %></li>
+          <% if (user_current.user_type != 'user') { %>
+            <li class="list-group-item"> <strong>Video para divulgação:  </strong><%= event.event_iframe %></li>
+          <% } %>
+        <li class="list-group-item"> <strong>Descrição: </strong><%= event.description %></li>
+      </ul>
+        <% if (event.event_iframe) { %>
+          <h4> Asissta o vídeo de divulgação do <%= event.event_type%> </h4>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=event.event_iframe%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br><br>
+        <% } %>
+        <% var counter = 0; if (counter === 0) { %>
+          <% for (var i = 0; i < event.users_enrolled.length; i++) { %>
+          <% if ( event.users_enrolled[i] === user_current._id && counter === 0 ) { %>
+            <div>
+                <button type="button" class="btn btn-sm btn-danger">
+                  <a href="/unenroll-event?event_id=<%= event._id %>">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Desinscrever-se
+                  </a>
+                </button>
+                <% if ( user_current.user_type != 'user' && event.users_enrolled.length > 0 ) { %>
+                  <button type="button" class="btn btn-sm btn-success">
+                      <a href="/email?event_id=<%=event._id%>">
+                          <i class="glyphicon glyphicon-envelope"></i>
+                          Enviar Email aos Participantes
+                      </a>
+                  </button>
+                <% } %>
+            </div>
+          <% counter = 1; } %>
+        <% } %>
+        <% if ( counter === 0) { %>
+          <button type="button" class="btn btn-sm btn-success">
+            <a href="/enroll-event?event_id=<%= event._id %>">
+              <i class="glyphicon glyphicon-ok"></i>
+              Inscrever-se
+            </a>
+          </button>
+            <% if ( user_current.user_type != 'user' && event.users_enrolled.length > 0 ) { %>
+              <button type="button" class="btn btn-sm btn-info">
+                <a href="/email?event_id=<%=event._id%>">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    Enviar Email aos Participantes
+                </a>
+              </button>
+            <% } %>
+          <% } %>
+        <% } %>
+        </br>
+        </br>
+      <div class="float-left">
+        <a href="/home">
+          <button class="btn btn-default btn-lg"> >>> Voltar para página inicial</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
+

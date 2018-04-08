@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="images/favicon.ico">
+
+  <title>SGE - Cadastro de Eventos</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body { background: #7386D5; }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="container-fluid">
+      <div class="col-md-10">
+        <div>
+          <h2 class="sge">SGE - Incluir Arquivos no Evento</h2>
+        </div>
+        <div class="container">
+          <div class="col-md-10">
+            <form enctype="multipart/form-data" action="/add-event-files" method="POST">
+              <!-- <div class="form-group">
+                <label>Nome do arquivo</label>
+                <input type="name" name="nameedited" class="form-control" placeholder="Digite o nome do arquivo">
+              </div> -->
+              <div class="form-group">
+                <label>Selecione um arquivo</label>
+                  <input class="btn btn-lg" type="file" name="filename"></input>
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+            <div>
+              <a class="navbar-text navbar-right" href="/home">
+                <button class="float-right btn btn-lg btn-default" type="submit" id="btnAdd">
+                  <span>Voltar para página inicial >>> </span>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</body>
+</html>

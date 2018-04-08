@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="images/favicon.ico">
+
+  <title>SGE - Cadastro de Eventos</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body { background: #7386D5; }
+    a:link { color: white; }
+    a:visited { color: white; }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <% if( validation.length > 0 ) { %>
+      <div class="alert alert-danger">
+        <strong>Atenção!</strong>
+        <ul>
+          <% for(var i = 0; i < validation.length; i++ ) { %>
+            <li>
+              <%= validation[i].msg %>
+            </li>
+            <% } %>
+        </ul>
+      </div>
+      <% } %>
+        <div>
+          <h1 class="sge">SGE - Cadastro de evento</h1>
+        </div>
+        <div>
+          <a class="navbar-text navbar-right" href="/home">
+            <button class="float-right btn btn-lg btn-default" type="submit" id="btnAdd">
+              <span>Voltar para página inicial >>> </span>
+            </button>
+          </a>
+        </div>
+        <form class="col-md-auto" action="/add-event" method="POST">
+          <!-- <img class="mb-4 rounded mx-auto d-block" src="images/logo-sge.png" width="150" height="100"> -->
+          <div class="form-group input-group">
+            <span class="input-group-text">Nome do Evento</span>
+            <input type="text" class="form-control" name="event_name" value="<%= dataForm.name %>" placeholder="Nome do evento">
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-text">Nome do Responsável</span>
+            <input type="text" class="form-control" name="sponsor_name" value="<%= dataForm.sponsor %>" placeholder="Palestrante ou Instrutor responsável">
+            </i>
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-text">Data Inicial</span>
+            <input type="date" class="form-control" name="date_initial" value="<%= dataForm.date_initial %>">
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-text">Data Final</span>
+            <input type="date" class="form-control" name="date_final" value="<%= dataForm.date_final %>">
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-text">Hora de Início</span>
+            <input type="time" class="form-control" name="hour_initial" value="<%= dataForm.hour_initial %>">
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-text">Hora de Término</span>
+            <input type="time" class="form-control" name="hour_final" value="<%= dataForm.hour_terminal %>">
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-text">Quantidade de Vagas</span>
+            <input type="number" class="form-control" name="qtd_total" value="<%= dataForm.qtd_total %>">
+          </div>
+
+          <span class="input-group-text">Tipo Do Evento</span>
+          <div class="form-group input-group">
+            <select type="text" name="event_type">
+              <option>Curso</option>
+              <option>Minicurso</option>
+              <option>Palestra</option>
+              <option>Simpósio</option>
+              <option>Seminário</option>
+              <option>Workshop</option>
+            </select>
+          </div>
+
+          <span class="input-group-text">Tipo de Aquisição</span>
+          <div class="form-group input-group">
+            <select type="text" name="event_acquisition">
+              <option>Gratuíto</option>
+              <option>Pago</option>
+            </select>
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-text">Vídeo para divulgação</span><br>
+            <a href="https://www.youtube.com/watch?v=EKyirtVHsK0">Com pegar o ID do seu video</a>
+            <input type="text" class="form-control" name="event_iframe" value="<%= dataForm.event_iframe %>" placeholder="Insirar o ID do seu vídeo">
+          </div>
+
+          <span class="input-group-text">Descrição</span>
+          <div class="form-group input-group">
+            <textarea type="text" name="description" cols="40" rows="5"></textarea>
+          </div>
+          <span>Obs.: A inserção do arquivos pode ser feita aṕos o cadastro do eventos</span>
+          </br>
+          </br>
+          <button type="submit" class="btn btn-lg btn-block">Salvar</button>
+
+        </form>
+        <div>
+</body>
+</html>

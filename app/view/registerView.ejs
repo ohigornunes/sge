@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="images/favicon.ico">
+
+  <title>SGE - Sistema Gerenciador de Eventos</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    body {
+      background: #7386D5;
+    }
+
+    .sge {
+      color: white;
+      font-size: 4em;
+      margin-bottom: 5%;
+      text-align: center;
+    }
+
+    a:link {
+      color: white;
+    }
+
+    a:visited {
+      color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div>
+    <h3 class="sge">SGE - Cadastro</h3>
+  </div>
+  <div class="container col-4">
+    <% if(validation.length > 0) { %>
+      <div class="alert alert-danger">
+        <strong>Atenção!</strong>
+        <ul>
+          <% for(var i = 0; i < validation.length; i++ ) { %>
+            <li>
+              <%= validation[i].msg %>
+            </li>
+            <% } %>
+        </ul>
+      </div>
+      <% } %>
+          <form class="center-block col-md-auto" action="/add-user" method="post">
+            <!-- <img class="mb-4 rounded mx-auto d-block" src="images/logo-sge.png" width="150" height="100"> -->
+            <div class="center-block form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Nome</span>
+              </div>
+              <input type="name" class="form-control" name="first_name" placeholder="Digite seu nome">
+            </div>
+
+            <div class="center-block form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Sobrenome</span>
+              </div>
+              <input type="name" class="form-control" name="last_name" placeholder="Digite seu nome">
+            </div>
+
+            <div class="center-block form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Email</span>
+              </div>
+              <input type="email" class="form-control" name="email" placeholder="Digite seu email">
+            </div>
+
+            <div class="center-block form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Senha</span>
+              </div>
+              <input type="password" class="form-control" name="password" placeholder="Digite uma senha" autocomplete="off">
+            </div>
+
+            <div class="center-block form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Confirme sua senha</span>
+              </div>
+              <input class="form-control" type="password" name="password_confirm" placeholder="Redigite sua senha" autocomplete="off">
+            </div>
+          </br>
+        </br>
+        <button type="submit" class="btn btn-lg btn-block">Cadastra-se</button>
+        </br>
+          <a href="/"> >>>Retorne </a>
+        </form>
+      </div>
+</body>
+
+</html>

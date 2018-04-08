@@ -1,0 +1,7 @@
+node_modules
+*.log
+*.env
+*.idea
+*.vscode
+*.txt
+/app/public/uploads

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/favicon.ico">
+
+  <title>SGE - Sistema Gerenciador de Eventos</title>
+
+  <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="css/signin.css" >
+  <style type="text/css" >
+    body { background: #7386D5; }
+    .sge { color: white; font-size: 4em; margin-bottom: 5%; text-align: center; }
+    a:link { color: white; }
+    a:visited { color: white; }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <% if( validation.length > 0 ) { %>
+      <div class="alert alert-danger">
+        <strong>Atenção!</strong>
+        <ul>
+          <% for(var i = 0; i < validation.length; i++ ) { %>
+            <li>
+              <%= validation[i].msg %>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    <% } %>
+      <form class="center-block col-md-auto" action="/auth" method="post">
+        <!-- <img class="mb-4  rounded mx-auto d-block" src="images/logo-sge.png" alt="" width="150" height="100"> -->
+        <h1 class="sge"> SGE </h1>
+          <% if(msg_email) { %>
+            <div class="alert alert-danger">
+              <strong>Atenção!</strong>
+              <ul>Um messagem de confirmação foi enviada para o email cadastrado.</ul>
+            </div>
+          <% } %>
+
+          <% if(msg_home) { %>
+            <div class="alert alert-danger">
+              <strong>Atenção!</strong>
+              <ul>Você deve estar logado antes de realizar esta ação.</ul>
+            </div>
+          <% } %>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> Email </span>
+            </div>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Senha</span>
+            </div>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Digite sua senha" autocomplete="off">
+          </div>
+
+          <div class="form-check">
+            <!-- <label> <input type="checkbox" value="remember-me"> Lembre-me | </label> -->
+            <div>
+              <a href="/register"> Cadastra-se </a> |
+              <a href="/forgot-my-password"> Esqueci a senha </a> |
+              <a href="/admin"> Área do Admininstrador </a>
+              </br>
+              </br>
+            </div>
+          </div>
+        <button class="btn btn-lg btn-block" type="submit">Entrar</button>
+      </form>
+  </div>
+</body>
+</html>
